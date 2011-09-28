@@ -26,4 +26,44 @@ template(this._mode === "content") { return this["ctx"]["content"] }
 
 template((! this["_start"])) { {var BEM = ({}),toString = Object["prototype"]["toString"],SHORT_TAGS = ({"area": (1),"base": (1),"br": (1),"col": (1),"command": (1),"embed": (1),"hr": (1),"img": (1),"input": (1),"keygen": (1),"link": (1),"meta": (1),"param": (1),"source": (1),"wbr": (1)});(function (BEM,undefined){var MOD_DELIM = "_",ELEM_DELIM = "__",NAME_PATTERN = "[a-zA-Z0-9-]+";var buildModPostfix = (function (modName,modVal,buffer){buffer.push(MOD_DELIM,modName,MOD_DELIM,modVal)});var buildBlockClass = (function (name,modName,modVal,buffer){buffer.push(name);(modVal && buildModPostfix(modName,modVal,buffer))});var buildElemClass = (function (block,name,modName,modVal,buffer){buildBlockClass(block,undefined,undefined,buffer);buffer.push(ELEM_DELIM,name);(modVal && buildModPostfix(modName,modVal,buffer))});(BEM["INTERNAL"]=({"NAME_PATTERN": NAME_PATTERN,"MOD_DELIM": MOD_DELIM,"ELEM_DELIM": ELEM_DELIM,"buildModPostfix": (function (modName,modVal,buffer){var res = (buffer || []);buildModPostfix(modName,modVal,res);return (buffer?res:res.join(""))}),"buildClass": (function (block,elem,modName,modVal,buffer){var typeOf = (typeof modName);if((typeOf == "string")){if(((typeof modVal) != "string")){(buffer=modVal);(modVal=modName);(modName=elem);(elem=undefined)}else{undefined}}else{if((typeOf != "undefined")){(buffer=modName);(modName=undefined)}else{if((elem && ((typeof elem) != "string"))){(buffer=elem);(elem=undefined)}else{undefined}}};if((! ((elem || modName) || buffer))){return block}else{undefined};var res = (buffer || []);(elem?buildElemClass(block,elem,modName,modVal,res):buildBlockClass(block,modName,modVal,res));return (buffer?res:res.join(""))}),"buildModsClasses": (function (block,elem,mods,buffer){var res = (buffer || []);if(mods){var modName = undefined;for(modName in mods){if(mods.hasOwnProperty(modName)){var modVal = mods[modName];res.push(" ");(elem?buildElemClass(block,elem,modName,modVal,res):buildBlockClass(block,modName,modVal,res))}else{undefined}}}else{undefined};return (buffer?res:res.join(""))}),"buildClasses": (function (block,elem,mods,buffer){var res = (buffer || []);(elem?buildElemClass(block,elem,undefined,undefined,res):buildBlockClass(block,undefined,undefined,res));this.buildModsClasses(block,elem,mods,buffer);return (buffer?res:res.join(""))})}))})(BEM);var buildEscape = (function (){var ts = ({"\"": "&quot;","&": "&amp;","<": "&lt;",">": "&gt;"}),f = (function (t){return (ts[t] || t)});return (function (r){return (function (s){return ("" + s).replace(r,f)})})})(),ctx = ({"ctx": this,"_start": true,"apply": arguments["callee"],"_buf": [],"_": ({"isArray": (function (obj){return (toString.call(obj) === "[object Array]")}),"isSimple": (function (obj){var t = (typeof obj);return ((t === "string") || (t === "number"))}),"isShortTag": (function (t){return SHORT_TAGS.hasOwnProperty(t)}),"extend": (function (o1,o2){if(((! o1) || (! o2))){return (o1 || o2)}else{undefined};var res = ({}),n = undefined;for(n in o1){(o1.hasOwnProperty(n) && (res[n]=o1[n]))};for(n in o2){(o2.hasOwnProperty(n) && (res[n]=o2[n]))};return res}),"xmlEscape": buildEscape(/[&<>]/g),"attrEscape": buildEscape(/["&<>]/g)}),"BEM": BEM,"isFirst": (function (){return (this["position"] === (1))}),"isLast": (function (){return (this["position"] === this["_listLength"])})});ctx.apply(ctx);return ctx["_buf"].join("")} }
 
-template((! this["elem"]) && this.block === "page" && this._mode === "tag") { return "html" }
+template((! this["elem"]) && this.block === "i-ua" && this._mode === "tag") { return "script" }
+
+template((! this["elem"]) && this.block === "i-ua" && this._mode === "bem") { return false }
+
+template((! this["elem"]) && this.block === "i-ua" && this._mode === "content") { return "document.documentElement.className=document.documentElement.className.replace(\"i-ua_js_no\", \"i-ua_js_yes\");if(document.compatMode!=\"CSS1Compat\")document.documentElement.className=document.documentElement.className.replace(\"i-ua_css_standart\", \"i-ua_css_quirks\");" }
+
+template((! this["elem"]) && this.block === "b-page" && this._mode === "default") { {this["_buf"].push("<!DOCTYPE html>");{var __o31 = this,__v31 = __o31["_mode"];(__o31["_mode"]="");var __o32 = this,__v32 = __o32["ctx"];(__o32["ctx"]=({"tag": "html","attrs": ({"class": "i-ua_js_no i-ua_css_standart"}),"content": [({"elem": "head","content": [({"tag": "meta","attrs": ({"http-equiv": "content-type","content": "text/html; charset=utf-8"})}),({"tag": "meta","attrs": ({"http-equiv": "X-UA-Compatible","content": "IE=EmulateIE7, IE=edge"})}),({"tag": "title","content": this["ctx"]["title"]}),(this["ctx"]["favicon"]?({"elem": "favicon","url": this["ctx"]["favicon"]}):""),this["ctx"]["meta"],({"block": "i-ua"}),this["ctx"]["head"]]}),({"elem": "body","mix": [this["ctx"]],"content": [this["ctx"]["content"]]})]}));this.apply();(__o32["ctx"]=__v32);(__o31["_mode"]=__v31)}} }
+
+template(this.block === "b-page" && this.elem === "head" && this._mode === "bem") { return false }
+
+template(this.block === "b-page" && this.elem === "head" && this._mode === "tag") { return "head" }
+
+template(this.block === "b-page" && this.elem === "body" && this._mode === "tag") { return "body" }
+
+template(this.block === "b-page" && this.elem === "meta" && this._mode === "bem") { return false }
+
+template(this.block === "b-page" && this.elem === "meta" && this._mode === "tag") { return "meta" }
+
+template(this.block === "b-page" && this.elem === "meta" && this._mode === "attrs") { return this["ctx"]["attrs"] }
+
+template(this.block === "b-page" && this.elem === "css" && this._mode === "bem") { return false }
+
+template(this.block === "b-page" && this.elem === "css" && this._mode === "tag") { return "style" }
+
+template(this.block === "b-page" && this.elem === "css" && this._mode === "default" && this["ctx"].hasOwnProperty("ie") && (! this["ctx"]["_ieCommented"])) { {var hideRule = ((! this["ctx"]["ie"])?["gt IE 7","<!-->","<!--"]:[this["ctx"]["ie"],"",""]);{var __o34 = this,__v34 = __o34["_mode"];(__o34["_mode"]="");var __o35 = this["ctx"],__v35 = __o35["_ieCommented"];(__o35["_ieCommented"]=true);var __o36 = this,__v36 = __o36["ctx"];(__o36["ctx"]=[(("<!--[if " + hideRule[(0)]) + "]>"),hideRule[(1)],this["ctx"],hideRule[(2)],"<![endif]-->"]);this.apply();(__o36["ctx"]=__v36);(__o35["_ieCommented"]=__v35);(__o34["_mode"]=__v34)}} }
+
+template(this.block === "b-page" && this.elem === "css" && this["ctx"]["url"] && this._mode === "tag") { return "link" }
+
+template(this.block === "b-page" && this.elem === "css" && this["ctx"]["url"] && this._mode === "attrs") { return ({"rel": "stylesheet","href": this["ctx"]["url"]}) }
+
+template(this.block === "b-page" && this.elem === "js" && this._mode === "bem") { return false }
+
+template(this.block === "b-page" && this.elem === "js" && this._mode === "tag") { return "script" }
+
+template(this.block === "b-page" && this.elem === "js" && this._mode === "attrs" && this["ctx"]["url"]) { return ({"src": this["ctx"]["url"]}) }
+
+template(this.block === "b-page" && this.elem === "favicon" && this._mode === "bem") { return false }
+
+template(this.block === "b-page" && this.elem === "favicon" && this._mode === "tag") { return "link" }
+
+template(this.block === "b-page" && this.elem === "favicon" && this._mode === "attrs") { return ({"rel": "shortcut icon","href": this["ctx"]["url"]}) }

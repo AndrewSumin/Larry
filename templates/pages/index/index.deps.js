@@ -38,25 +38,9 @@ exports.deps = [
         "elem": "html"
     },
     {
-        "block": "i-jquery",
-        "elem": "leftclick"
+        "block": "i-ua"
     },
     {
-        "block": "i-bem",
-        "elem": "dom"
-    },
-    {
-        "block": "i-bem",
-        "elem": "dom",
-        "mod": "init"
-    },
-    {
-        "block": "i-bem",
-        "elem": "dom",
-        "mod": "init",
-        "val": "auto"
-    },
-    {
-        "block": "page"
+        "block": "b-page"
     }
 ];
