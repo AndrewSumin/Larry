@@ -1,9 +1,0 @@
-block page {
-    tag: '',
-    content:[
-        {
-            elem: 'html',
-            tag: 'html'
-        }
-    ]
-}

@@ -1,5 +1,5 @@
 all:: bem-bl
-all:: $(patsubst %.bemdecl.js, %.bemhtml.js ,$(wildcard pages/*/*.bemdecl.js))
+all:: $(patsubst %.bemdecl.js, %.bemhtml.js,$(wildcard pages/*/*.bemdecl.js, pages))
 
 BEM_BUILD=bem build \
 	-l bem-bl/blocks-common/ \
@@ -15,23 +15,40 @@ BEM_CREATE=bem create block \
 		-t $1 \
 		$(*F)
 
-#%.html: %.bemhtml.js %.css
-#	rm -f $@
-#	$(call BEM_CREATE,bem-bl/blocks-desktop/i-bem/bem/techs/html.js)
+%.html: %.bemhtml.js %.css %.js %.ie.css
+	$(call BEM_CREATE,bem-bl/blocks-common/i-bem/bem/techs/html.js)
 
 %.bemhtml.js: %.deps.js
-	$(call BEM_BUILD,bem-bl/blocks-desktop/i-bem/bem/techs/bemhtml.js)
+	$(call BEM_BUILD,bem-bl/blocks-common/i-bem/bem/techs/bemhtml.js)
 
 %.deps.js: %.bemdecl.js
 	$(call BEM_BUILD,deps.js)
 
-#%.bemdecl.js: %.bemhtml
-#	$(call BEM_CREATE,bemdecl.js)
+%.bemdecl.js: %.bemjson.js
+	$(call BEM_CREATE,bemdecl.js)
 
 .PRECIOUS: %.css
 %.css: %.deps.js
-	$(call BEM_BUILD,bem/techs/css.js)
-#	yui-compressor $@ -o $@
-#	gzip -cf9 $@ >$@.gz
+	$(call BEM_BUILD,css)
+
+.PRECIOUS: %.ie.css
+%.ie.css: %.deps.js
+	$(call BEM_BUILD,ie.css)
+
+.PRECIOUS: %.js
+%.js: %.deps.js
+	$(call BEM_BUILD,js)
+
+
+#DO_GIT=@echo -- git $1 $2; \
+#	if [ -d $2 ]; \
+#		then \
+#			cd $2 && git pull origin master; \
+#		else \
+#			git clone $1 $2; \
+#	fi
+
+bem-bl:
+	$(call DO_GIT,git://github.com/bem/bem-bl.git,$@)
 
 .PHONY: all

@@ -1,0 +1,8 @@
+.message__from{
+    display:inline-block;
+    width:200px;
+    overflow:hidden;
+}
+.message__to{
+    display:inline-block;
+}

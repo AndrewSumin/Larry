@@ -4,8 +4,8 @@ var cookies = require('./cookies');
 module.exports = function(handler, callback){
     callback({
         collect: function(callback){
-            handler.request.cookies = new cookies(handler.request, handler.response);
-            dispatcher(handler).collect();
+            handler.cookies = new cookies(handler.request, handler.response);
+            dispatcher(handler).collect(handler);
             callback();
         },
         transform: function(doc){

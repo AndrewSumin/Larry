@@ -1,0 +1,9 @@
+block message {
+    tag: 'div',
+    elem from {
+        tag: 'span',
+    }
+    elem subject {
+        tag: 'span'
+    }
+}

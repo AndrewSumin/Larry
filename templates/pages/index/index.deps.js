@@ -41,6 +41,10 @@ exports.deps = [
         "block": "i-ua"
     },
     {
+        "block": "i-jquery",
+        "elem": "core"
+    },
+    {
         "block": "b-page"
     }
 ];
