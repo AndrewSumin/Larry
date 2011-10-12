@@ -1,5 +1,6 @@
-all:: bem-bl
-all:: $(patsubst %.bemdecl.js, %.bemhtml.js,$(wildcard pages/*/*.bemdecl.js, pages))
+all:: $(patsubst %.bemdecl.js, %.bemhtml.js, $(wildcard pages/*/*.bemdecl.js))
+all:: $(patsubst %.bemdecl.js, %.bemhtml.js, $(wildcard pages/*/*.css))
+#all:: bem-bl
 
 BEM_BUILD=bem build \
 	-l bem-bl/blocks-common/ \
@@ -25,6 +26,7 @@ BEM_CREATE=bem create block \
 	$(call BEM_BUILD,deps.js)
 
 %.bemdecl.js: %.bemjson.js
+	echo "test";
 	$(call BEM_CREATE,bemdecl.js)
 
 .PRECIOUS: %.css
