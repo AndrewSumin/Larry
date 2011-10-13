@@ -6,7 +6,7 @@ use JSON::XS;
 my (@body, $body, $json, $ua, $t);
 
 $ua = new LWP::UserAgent;
-$ua->request(HTTP::Request->new('GET', 'http://dreadatour.ru/larry.js'), sub { push @body, shift });
+$ua->request(HTTP::Request->new('GET', 'http://dreadatour.ru/larry25.js'), sub { push @body, shift });
 
 $t = time;
 $body = join('', @body) foreach 1..100;

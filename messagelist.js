@@ -7,8 +7,8 @@ module.exports = {
     collect: function(handler){
         handler.put(
             'checknew',
-            //handler.http('http://e.mail.ru/cgi-bin/checknew',
-            handler.http('http://dreadatour.ru/larry.js',
+            handler.http('http://e.mail.ru/cgi-bin/checknew',
+            //handler.http('http://dreadatour.ru/larry.js',
                 {
                     query:{force:'1', folder:'0'},
                     headers:{'Cookie': 'Mpop=' + handler.app.cookies.get('Mpop') + ';'}
@@ -53,6 +53,7 @@ module.exports = {
         var html = BEMHTML.apply(json);
         console.log("BEMHTML.apply:" + (new Date().getTime() - start));
         response.write(html);
+        response.write(JSON.stringify(handler.result))
         response.end('\n');
     }
 }
